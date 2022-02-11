@@ -33,13 +33,22 @@ function updateTotalField(totalFiledId,amount){
         totalElement.innerText=previousTotal+amount;
 }
 
-
-function updateBalance(Amount,isAdd){
+function getcurrentBalance(){
         const balanceTotal=document.getElementById('balance-total');
         const balanceTotalText=balanceTotal.innerText;
 
         const previousBalanceTotal=parseFloat(balanceTotalText);
 
+        return previousBalanceTotal
+}
+
+
+function updateBalance(Amount,isAdd){
+        const balanceTotal=document.getElementById('balance-total');
+        // const balanceTotalText=balanceTotal.innerText;
+
+        // const previousBalanceTotal=parseFloat(balanceTotalText);
+        const previousBalanceTotal=getcurrentBalance()
         if(isAdd==true){
                 balanceTotal.innerText=previousBalanceTotal+Amount;
         }
@@ -64,9 +73,13 @@ document.getElementById('deposite-btn').addEventListener('click', function(e){
         // console.log(depositeTotalText);
 
         const depositeAmmout= getInputValue('user-deposite');
-        updateTotalField('deposite-total', depositeAmmout);
 
-        updateBalance(depositeAmmout,true);
+        if(depositeAmmout>0){
+                updateTotalField('deposite-total', depositeAmmout);
+
+                updateBalance(depositeAmmout,true);
+        }
+ 
 
         // update balance
         // const balanceTotal=document.getElementById('balance-total');
@@ -113,8 +126,21 @@ document.getElementById('withdraw-btn').addEventListener('click',function(e) {
 
 // balanceTotal.innerText=previousBalanceTotal-withdrawAmmout;
 const withdrawAmmout=getInputValue('user-withdraw');
-updateTotalField('withdraw-total', withdrawAmmout);
-updateBalance(withdrawAmmout,false);
+const currentBalance=getcurrentBalance()
+
+if(withdrawAmmout>0 && withdrawAmmout<=currentBalance ){
+        updateTotalField('withdraw-total', withdrawAmmout);
+        updateBalance(withdrawAmmout,false);
+
+        document.getElementById('balance-text').innerText=" ";
+        document.getElementById('withdraw-text').innerText=" ";
+}
+
+else{
+        document.getElementById('balance-text').innerText="insufficent balance"
+        document.getElementById('withdraw-text').innerText="not enough balance for withdraw"
+}
+
 
 
 // // clear withdraw input
