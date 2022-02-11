@@ -3,33 +3,25 @@
 //         return result
 // }
 
+
+
 // doubleIt(2);
 // console.log(doubleIt(5))
 
-function getInputValue(){
-        const depositeInput=document.getElementById('user-deposite');
+// share function
+function getInputValue(InputId){
+        const inputField=document.getElementById(InputId);
 
-        const depositeAmmoutText=depositeInput.value;
-        const depositeAmmout=parseFloat(depositeAmmoutText);
+        const inputAmmoutText=inputField.value;
+        const inputAmmout=parseFloat(inputAmmoutText);
         // reset input
-        depositeInput.value='';
-        return depositeAmmout;
+        inputField.value='';
+        return inputAmmout;
 }
 
 document.getElementById('deposite-btn').addEventListener('click', function(e){
-        // console.log('first');
-
-        // getuser deposite
-
-        // const depositeInput=document.getElementById('user-deposite');
-
-        // const depositeAmmoutText=depositeInput.value;
-        // const depositeAmmout=parseFloat(depositeAmmoutText);
-        // console.log(typeof depositeAmmout);
-        // console.log(typeof depositeAmmout)
-
-                    // get current deposite
-        const depositeAmmout= getInputValue();
+                   // get current deposite
+        const depositeAmmout= getInputValue('user-deposite');
         const depositeTotal=document.getElementById('deposite-total');
         const depositeTotalText=depositeTotal.innerText;
 
@@ -63,17 +55,8 @@ document.getElementById('deposite-btn').addEventListener('click', function(e){
 
 // handle withdraw btton
 document.getElementById('withdraw-btn').addEventListener('click',function(e) {
-
-        // get withdraw from input
-// console.log('withdraw click')
-const withdrawInput=document.getElementById('user-withdraw');
-
-
-const withdrawAmmoutText=withdrawInput.value;
-
-const withdrawAmmout=parseFloat(withdrawAmmoutText);
-
-console.log(withdrawAmmout);
+const withdrawAmmout=getInputValue('user-withdraw')
+// console.log(withdrawAmmout);
 
 // get previous withdraw from withdraw total
 const previousWithdrawAmmoutText=document.getElementById('withdraw-total');
@@ -99,9 +82,9 @@ balanceTotal.innerText=previousBalanceTotal-withdrawAmmout;
 
 
 
-// clear withdraw input
+// // clear withdraw input
 
-withdrawInput.value="";
+// withdrawInput.value="";
 
 });
 
