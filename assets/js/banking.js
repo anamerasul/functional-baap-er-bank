@@ -7,10 +7,6 @@ document.getElementById('deposite-btn').addEventListener('click', function(e){
 
         const depositeAmmoutText=depositeInput.value;
 
-                // alert('please input right number')
-                document.getElementById('deposite-text').innerText="Please input a number"
-
-
 
 
         const depositeAmmout=parseFloat(depositeAmmoutText);
@@ -24,11 +20,6 @@ document.getElementById('deposite-btn').addEventListener('click', function(e){
 
 
         const previousDepositeTotal=parseFloat(depositeTotalText);
-
-        // if(previousDepositeTotal=='NaN'){
-        //         // return false;
-        //         alert('up')
-        // }
 
 
         depositeTotal.innerText=previousDepositeTotal+depositeAmmout;
