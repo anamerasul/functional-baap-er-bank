@@ -19,21 +19,35 @@ function getInputValue(InputId){
         return inputAmmout;
 }
 
+
+function updateTotalField(totalFiledId,amount){
+
+        // debugger
+        const totalElement=document.getElementById(totalFiledId);
+        const TotalText=totalElement.innerText;
+
+
+        const previousTotal=parseFloat(TotalText);
+
+
+        totalElement.innerText=previousTotal+amount;
+}
 document.getElementById('deposite-btn').addEventListener('click', function(e){
-                   // get current deposite
+                 
         const depositeAmmout= getInputValue('user-deposite');
-        const depositeTotal=document.getElementById('deposite-total');
-        const depositeTotalText=depositeTotal.innerText;
+        // get and update current deposite
+        // const depositeTotal=document.getElementById('deposite-total');
+        // const depositeTotalText=depositeTotal.innerText;
 
 
-        const previousDepositeTotal=parseFloat(depositeTotalText);
+        // const previousDepositeTotal=parseFloat(depositeTotalText);
 
 
-        depositeTotal.innerText=previousDepositeTotal+depositeAmmout;
-        console.log(depositeTotalText);
+        // depositeTotal.innerText=previousDepositeTotal+depositeAmmout;
+        // console.log(depositeTotalText);
 
         
-        
+        updateTotalField('deposite-total', depositeAmmout)
 
         // update balance
         const balanceTotal=document.getElementById('balance-total');
@@ -59,16 +73,18 @@ const withdrawAmmout=getInputValue('user-withdraw')
 // console.log(withdrawAmmout);
 
 // get previous withdraw from withdraw total
-const previousWithdrawAmmoutText=document.getElementById('withdraw-total');
+// const previousWithdrawAmmoutText=document.getElementById('withdraw-total');
 
-const previousWithdrawAmmoutTextValue=previousWithdrawAmmoutText.innerText;
+// const previousWithdrawAmmoutTextValue=previousWithdrawAmmoutText.innerText;
 
-const previousWithdrawAmmoutTextValueToNum=parseFloat(previousWithdrawAmmoutTextValue);
+// const previousWithdrawAmmoutTextValueToNum=parseFloat(previousWithdrawAmmoutTextValue);
 
-// update total withdraw
-const totalWithdraw=previousWithdrawAmmoutTextValueToNum+withdrawAmmout;
+// // update total withdraw
+// const totalWithdraw=previousWithdrawAmmoutTextValueToNum+withdrawAmmout;
 
-previousWithdrawAmmoutText.innerText=totalWithdraw;
+// previousWithdrawAmmoutText.innerText=totalWithdraw;
+
+updateTotalField('withdraw-total', withdrawAmmout)
 
 
 // update balance
@@ -87,7 +103,4 @@ balanceTotal.innerText=previousBalanceTotal-withdrawAmmout;
 // withdrawInput.value="";
 
 });
-
-
-
 
